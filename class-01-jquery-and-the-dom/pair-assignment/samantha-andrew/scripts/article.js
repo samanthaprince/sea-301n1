@@ -1,7 +1,7 @@
 var articles = [];
 
 function Article (opts) {
-  // TODO: Use the js object passed in to complete this contructor function:
+  // todo: Use the js object passed in to complete this contructor function:
   // Save ALL the properties of `opts` into `this`.
   this.title = opts.title;
   this.category = opts.category;
@@ -16,7 +16,7 @@ Article.prototype.toHtml = function() {
 
   $newArticle.attr('data-category', this.category);
 
-  // TODO: Use jQuery to fill in the template with properties
+  // todo: Use jQuery to fill in the template with properties
   // from this particular Article instance. We need to fill in:
   // the author name and url, the article title and body, and the
   // publication date.
@@ -33,7 +33,7 @@ Article.prototype.toHtml = function() {
 
   $newArticle.append('<hr>');
 
-  // TODO: This cloned article is no longer a template, so we should remove that class...
+  // todo: This cloned article is no longer a template, so we should remove that class...
   $newArticle.removeClass('template');
   return $newArticle;
 }
