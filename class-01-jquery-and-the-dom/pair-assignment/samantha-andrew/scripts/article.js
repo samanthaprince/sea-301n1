@@ -14,7 +14,7 @@ function Article (opts) {
 Article.prototype.toHtml = function() {
   var $newArticle = $('article.template').clone();
 
-  $newArticle.data('category', this.category);
+  $newArticle.attr('data-category', this.category);
 
   // TODO: Use jQuery to fill in the template with properties
   // from this particular Article instance. We need to fill in:
@@ -23,7 +23,7 @@ Article.prototype.toHtml = function() {
   $newArticle.find('h1').html(this.title);
   $newArticle.find('.byline a').html(this.author);
   $newArticle.find('.byline a').attr('href', this.authorUrl);
-  $newArticle.find('time[pubdate]').attr('datetime', this.publishedOn)
+  $newArticle.find('time[pubdate]').attr('datetime', this.publishedOn);
   $newArticle.find('.article-body').html(this.body);
   // Include the publication date as a 'title' attribute to show on hover:
   $newArticle.find('time[pubdate]').attr('title', this.publishedOn)
