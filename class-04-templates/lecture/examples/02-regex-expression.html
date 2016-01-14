@@ -7,17 +7,28 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js" charset="utf-8"></script>
 
   <script id="hello" type="text/template">
-    Hello {{0}}, my name is {{1}}, and I like {{2}}
+    Hello {{}}, my name is {{}}, and I like {{}} and {{}}
   </script>
 </head>
 <body>
   <div id="app"></div>
   <script>
     var compile = function(template, expressions) {
-      return appTemplate.replace(/{{(\d+)}}/g, swapper);
+      var i = 0;
+      return template.replace(/{{()}}/g, swapper);
       // where
-      function swapper(match, number) {
-        return expressions[number];
+      //regular expressions(regex):
+      //g means global
+      //(\d+) means decimal character with at least 1 decimal in curly braces
+      //* means 0 or more with the character directly to the left
+      //()means group
+      //swapper is a function, so everything that matches we call the swapper function
+
+      function swapper(match) {
+        console.log(match);
+        console.log(i);
+        return expressions[i++];
+
       };
     };
     var appTemplate = $('#hello').html()
