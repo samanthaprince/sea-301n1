@@ -8,9 +8,10 @@
   padding: 0 0 .2em 1em;
 }
 
-.icon-menu {
-  float: right;
+.icon-menu{
+  float:right;
   font-size: 1.5em;
+
 }
 
 .main-nav {
@@ -53,28 +54,26 @@
   text-decoration: none;
 }
 
-@media only screen and (min-width: 960px) {
+/* TODO: Now add styles for how things should look on a larger screen:
+         - Hide the hamburger.
+         - Main should be all on one row, with padding spaced better for a larger screen.
+         - Just, ya know, try to make it look good! */
+/* @media only screen... */
 
+@media only screen and (min-width: 960px){
   .icon-menu:before {
     display: none;
   }
-  .icon-menu{
-    margin: auto;
-    min-width: 80%;
-  }
   .main-nav ul{
     display: inline;
-    padding: 1.5em;
+    padding: 3em;
   }
   .main-nav:hover ul{
-    display: inline;
-    padding: 1.5em;
+    display: none;
   }
   .main-nav li{
-    min-width: 15%;
-    display: inline-block;
-    /*margin-left: auto;*/
-    /*padding-top: 1em;*/
-
+    display: inline;
+    margin-top: 2em;
   }
+
 }

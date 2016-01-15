@@ -1,7 +1,6 @@
 
 img {
   max-width: 100%;
-  /*I believe that the max-width already suffices the rule so the image never exceed's the container's width*/
 }
 
 body {
