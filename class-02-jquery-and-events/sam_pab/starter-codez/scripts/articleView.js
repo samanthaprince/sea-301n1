@@ -30,7 +30,7 @@ articleView.handleAuthorFilter = function() {
   $('#author-filter').on('change', function() {
     if ($(this).val()) {
       $('article').hide();
-      $("article[data-author='" + $(this).val() + "']").show();
+      $('article[data-author="' + $(this).val() + '"]').show();
 
     } else {
       $('article').show();
@@ -44,7 +44,7 @@ articleView.handleAuthorFilter = function() {
 articleView.handleCategoryFilter = function() {
   $('#category-filter').on('change', function(){
     if ($(this).val()) {
-      $("article[data-category='" + $(this).val() + "']").show();
+      $('article[data-category="' + $(this).val() + '"]').show();
     } else {
       $('article').show();
       $('.template').hide();
@@ -54,30 +54,29 @@ articleView.handleCategoryFilter = function() {
 };
 
 articleView.handleMainNav = function() {
-$(document).ready(function(){
-  $('.main-nav').on('click', '.tab', function() {
-    $('.tab-content').hide();
-    var test = $(this).attr('data-content');
-    console.log(test);
-    $('#' + test).show();
+  $(document).ready(function(){
+    $('.main-nav').on('click', '.tab', function() {
+      $('.tab-content').hide();
+      var test = $(this).attr('data-content');
+      console.log(test);
+      $('#' + test).show();
+    });
   });
-});
   $('.main-nav .tab:first').click(); // Let's now trigger a click on the first .tab element, to set up the page.
 };
 
 articleView.setTeasers = function() {
   $('.article-body *:nth-of-type(n+2)').hide(); // Hide elements beyond the first 2 in any artcile body.
-    $('#articles').on('click', 'a.read-on', function(e){
-      e.preventDefault();
-      $(this).parent().find('*').fadeIn();
-      $(this).hide();
-    });
+  $('#articles').on('click', 'a.read-on', function(e) {
+    e.preventDefault();
+    $(this).parent().find('*').fadeIn();
+    $(this).hide();
   });
-
 };
+
 articleView.populateFilters();
 articleView.handleAuthorFilter();
 articleView.handleCategoryFilter();
 articleView.handleMainNav();
 articleView.setTeasers();
-$();
+$(document).ready();
