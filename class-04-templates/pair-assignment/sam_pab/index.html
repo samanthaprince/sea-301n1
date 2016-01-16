@@ -11,26 +11,18 @@
     <link rel="stylesheet" href="styles/modules.css">
 
     <script id="article-template" type="text/x-handlebars-template">
-      <article>
+      <article class="clearfix" data-category="{{category}}" data-author="{{author}}">
           <header>
             <h1>{{title}}</h1>
             <div class="byline">
-              By <address><a href="">{{author}}</a></address>
-              {{publishedOn}} <time pubdate datetime="2000-01-01">Publish Time</time>
+              By <address><a href="{{authorUrl}}">{{author}}</a></address>
+              {{publishedOn}} <time pubdate datetime="2000-01-01">{{publishStatus}}</time>
             </div>
           </header>
-          <section class="article-body">{{body}}</section>
+          <section class="article-body">{{{body}}}</section>
           <a href="#" class="read-on">Read on &rarr;</a>
         </article>
     </script>
-
-    <!--
-      TODO: Add a script tag to hold the Handlebars template.
-        - Be sure to give it a meaningful id attribute.
-        - Move your old template structure to here.
-        - Insert placeholder keys.
-        - If your object doesn't have values you need yet, you can add those properties in the model.
-    -->
 
   </head>
   <body>
