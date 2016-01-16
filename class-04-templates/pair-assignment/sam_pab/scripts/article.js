@@ -10,6 +10,10 @@ function Article (opts) {
 }
 
 Article.prototype.toHtml = function() {
+  var articleTemplate = $('#article-template').html();
+  var compileTemplate = Handlebars.compile(articleTemplate);
+  var html = compileTemplate(rawData);
+  $('#article-template').append(html);
   // TODO: Use handlebars to render your articles.
   //       - Get your template from the DOM.
   //       - Now "compile" your template with Handlebars.
