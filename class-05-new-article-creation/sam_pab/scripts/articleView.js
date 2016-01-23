@@ -63,16 +63,26 @@ articleView.setTeasers = function() {
 };
 
 articleView.initNewArticlePage = function() {
-  // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later.
 
-  // TODO: The new articles we create will be copy/pasted into our source data file.
+  $('.tab-content').show();
+
   // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
+  $('#export-field').hide();
 
-  // TODO: Add an event handler to update the preview and the export field if any inputs change.
+  $('input').on('change',function(){
+    // var articleTitle = $('#article-title').val();
+    // var bodyText = $('#article-body').val();
+    // var authorName = $('#article-author').val();
+    // var urlAuthor = $('#article-author-url').val();
+    // var articleCategory = $('#article-category').val();
+    $('#export-field').show();
+  });
 };
 
 articleView.create = function() {
   // TODO: Set up a var to hold the new article we are creating.
+  var newArticle = {};
+
   // Clear out the #articles element, so we can put in the updated preview
 
   // TODO: Instantiate an article based on what's in the form fields:
@@ -91,4 +101,5 @@ articleView.initIndexPage = function() {
   articleView.handleAuthorFilter();
   articleView.handleMainNav();
   articleView.setTeasers();
+  articleView.create();
 };
