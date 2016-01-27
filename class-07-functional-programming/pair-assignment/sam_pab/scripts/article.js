@@ -1,4 +1,4 @@
-(function(module){
+(function(param){
   function Article (opts) {
     this.author = opts.author;
     this.authorUrl = opts.authorUrl;
@@ -7,7 +7,6 @@
     this.body = opts.body;
     this.publishedOn = opts.publishedOn;
   }
-  console.log('after article');
   Article.all = [];
 
   Article.prototype.toHtml = function() {
@@ -37,36 +36,41 @@
 
   // This function will retrieve the data from either a local or remote source,
   // and process it, then hand off control to the View.
-  // TODO: Refactor this function, so it accepts an argument of a callback function (likely a view function)
-  // to execute once the loading of articles is done.
-  Article.fetchAll = function(cb) {
+  Article.fetchAll = function(view) {
     if (localStorage.rawData) {
       Article.loadAll(JSON.parse(localStorage.rawData));
-      cb();
+      view();
     } else {
       $.getJSON('/data/hackerIpsum.json', function(rawData) {
         Article.loadAll(rawData);
         localStorage.rawData = JSON.stringify(rawData); // Cache the json, so we don't need to request it next time.
-        articleView.initIndexPage();
+        view();
       });
     }
   };
 
-  // TODO: Chain together a `map` and a `reduce` call to get a rough count of all words in all articles.
+
   Article.numWordsAll = function() {
-    return Article.all.map(function(article) {
-      return article;
-      // Get the total number of words in this article;
+    return Article.all.map(function(element) {
+      return element.body.split(' ').length;
     })
     .reduce(function(a, b) {
-      return a;
-      // Sum up all the values in the collection
-    });
+      return a + b;
+    },0);
   };
 
   // TODO: Chain together a `map` and a `reduce` call to produce an array of unique author names.
   Article.allAuthors = function() {
-    return ;
+    return Article.all.map(function(element){
+      return element.author;
+    })
+    .reduce(function(list, author){
+
+      // if (author != author) {
+      //   list + ' ' + author;
+      // }
+      return list.push(author);
+    },[]);
     // Don't forget to read the docs on map and reduce!
   };
 
@@ -79,5 +83,6 @@
       };
     });
   };
-  module.Article = Article;
+  param.Article = Article;
+  Article.numWordsAll();
 })(window);
