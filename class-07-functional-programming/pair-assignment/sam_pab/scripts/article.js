@@ -66,7 +66,7 @@
     })
     .reduce(function(list, author){
 
-      // if (author != author) {
+      //if (author != author) {
       //   list + ' ' + author;
       // }
       return list.push(author);
