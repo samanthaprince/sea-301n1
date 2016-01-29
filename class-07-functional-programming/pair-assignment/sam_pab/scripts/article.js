@@ -59,22 +59,21 @@
     },0);
   };
 
-  // TODO: Chain together a `map` and a `reduce` call to produce an array of unique author names.
   Article.allAuthors = function() {
     return Article.all.map(function(element){
       return element.author;
-    })
+    }).sort()
     .reduce(function(list, author){
-
-      //if (author != author) {
-      //   list + ' ' + author;
-      // }
-      return list.push(author);
+      if(list.indexOf(author) === -1){
+        list.push(author);
+      };
+      return list;
     },[]);
     // Don't forget to read the docs on map and reduce!
   };
 
   Article.numWordsByAuthor = function() {
+
     // TODO: Transform each author string into an object with 2 properties: One for
     // the author's name, and one for the total number of words across all articles written by the specified author.
     return Article.allAuthors().map(function(author) {
