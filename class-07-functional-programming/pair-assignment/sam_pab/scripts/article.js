@@ -37,11 +37,12 @@
   // This function will retrieve the data from either a local or remote source,
   // and process it, then hand off control to the View.
   Article.fetchAll = function(view) {
+    // localStorage.clear();
     if (localStorage.rawData) {
       Article.loadAll(JSON.parse(localStorage.rawData));
       view();
     } else {
-      $.getJSON('/data/hackerIpsum.json', function(rawData) {
+      $.getJSON('data/hackerIpsum.json', function(rawData) {
         Article.loadAll(rawData);
         localStorage.rawData = JSON.stringify(rawData); // Cache the json, so we don't need to request it next time.
         view();
@@ -52,9 +53,11 @@
 
   Article.numWordsAll = function() {
     return Article.all.map(function(element) {
+      // console.log(element.body.split(' '));
       return element.body.split(' ').length;
     })
     .reduce(function(a, b) {
+      // console.log(a,b);
       return a + b;
     },0);
   };
@@ -62,7 +65,7 @@
   Article.allAuthors = function() {
     return Article.all.map(function(element){
       return element.author;
-    }).sort()
+    })
     .reduce(function(list, author){
       if(list.indexOf(author) === -1){
         list.push(author);
@@ -73,15 +76,24 @@
   };
 
   Article.numWordsByAuthor = function() {
-
-    // TODO: Transform each author string into an object with 2 properties: One for
-    // the author's name, and one for the total number of words across all articles written by the specified author.
     return Article.allAuthors().map(function(author) {
       return {
-        // someKey: someValOrFunctionCall().map(...).reduce(...), ...
+        name: author,
+        wordCount: Article.all.filter(function(ele) {
+          if (ele.author === author) {
+            return true;
+          }
+          return false;
+        }).reduce(function(sum, article) {
+          // console.log(sum)
+
+          return sum + article.body.split(' ').length;
+          // return ele.body.split(' ').length;
+
+        }, 0)
+
       };
     });
   };
   param.Article = Article;
-  Article.numWordsAll();
 })(window);
