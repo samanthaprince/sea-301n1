@@ -12,7 +12,7 @@
     </head>
     <!-- TODO: Setup a template for each row of the Author Stats section of this page: -->
     <script id="author-template" type="text/x-handlebars-template">
-      <li><strong>{{name}}</strong>: {{numWords}} words written</li>
+      <li><strong>{{name}}</strong>: {{wordCount}} words written</li>
     </script>
   <body>
     <header class="site-header clearfix">
@@ -40,9 +40,9 @@
         <p><em>Details on who is writing, and how much writing they are doing...</em></p>
         <ul class="author-stats">
           <script id="author-stats" type="text/x-handlebars-template">
-            <li>{{}}</li>
+            <li></li>
           </script>
-          <!-- TODO: Use a handlebars template to fill in some stats for each author -->
+
         </ul>
       </section>
     </main>
