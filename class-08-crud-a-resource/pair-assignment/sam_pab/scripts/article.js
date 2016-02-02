@@ -19,7 +19,6 @@
     return template(this);
   };
 
-  // TODO: Set up a DB table for articles.
   Article.createTable = function(callback) {
     webDB.execute(
       'CREATE TABLE IF NOT EXISTS articles (id INT PRIMARY KEY, title VARCHAR (50) NOT NULL, author VARCHAR(50) NOT NULL, authorURL VARCHAR(255), category VARCHAR(50), publishedOn DATETIME, body TEXT NOT NULL);',
@@ -30,7 +29,6 @@
     );
   };
 
-  // TODO: Correct the SQL to delete all records from the articles table.
   Article.truncateTable = function(callback) {
     webDB.execute(
       'DELETE FROM articles;',
@@ -39,36 +37,37 @@
   };
 
 
-  // TODO: Insert an article instance into the database:
   Article.prototype.insertRecord = function(callback) {
     webDB.execute(
       [
         {
-          'sql': '...;',
-          'data': [],
+          'sql': 'INSERT INTO articles (title, author, authorURL, category, publishedOn, body) VALUES (?, ?, ?, ?, ?, ?);',
+          'data': [this.title, this.author, this.authorURL, this.category, this.publishedOn, this.body],
         }
       ],
       callback
     );
   };
 
-  // TODO: Delete an article instance from the database:
   Article.prototype.deleteRecord = function(callback) {
     webDB.execute(
       [
         {
-          /* ... */
+          'sql': 'DELETE FROM articles WHERE id=?;',
+          'data': [this.id]
         }
       ],
       callback
     );
   };
 
-  // TODO: Update an article instance, overwriting it's properties into the corresponding record in the database:
   Article.prototype.updateRecord = function(callback) {
     webDB.execute(
       [
-        /* ... */
+        {
+          'sql': 'UPDATE articles SET title = ?, author = ?, authorURL = ?, category = ?, publishedOn = ?, body = ?;',
+          'data': [this.title, this.author, this.authorURL, this.category, this.publishedOn, this.body]
+        }
       ],
       callback
     );
