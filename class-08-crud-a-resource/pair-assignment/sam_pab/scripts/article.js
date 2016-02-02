@@ -22,7 +22,7 @@
   // TODO: Set up a DB table for articles.
   Article.createTable = function(callback) {
     webDB.execute(
-      '...',
+      'CREATE TABLE IF NOT EXISTS articles (id INT PRIMARY KEY, title VARCHAR (50) NOT NULL, author VARCHAR(50) NOT NULL, authorURL VARCHAR(255), category VARCHAR(50), publishedOn DATETIME, body TEXT NOT NULL);',
       function(result) {
         console.log('Successfully set up the articles table.', result);
         if (callback) callback();
@@ -33,7 +33,7 @@
   // TODO: Correct the SQL to delete all records from the articles table.
   Article.truncateTable = function(callback) {
     webDB.execute(
-      'DELETE ...;',
+      'DELETE FROM articles;',
       callback
     );
   };
@@ -90,7 +90,7 @@
         // Now instanitate those rows with the .loadAll function, and pass control to the view.
 
       } else {
-        $.getJSON('/data/hackerIpsum.json', function(rawData) {
+        $.getJSON('data/hackerIpsum.json', function(rawData) {
           // Cache the json, so we don't need to request it next time:
           rawData.forEach(function(item) {
             var article = new Article(item); // Instantiate an article based on item from JSON
