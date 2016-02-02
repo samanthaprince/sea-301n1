@@ -84,10 +84,11 @@
   // we need to retrieve the JSON and process it.
   // If the DB has data already, we'll load up the data (sorted!), and then hand off control to the View.
   Article.fetchAll = function(next) {
-    webDB.execute('', function(rows) {
+    webDB.execute('SQL Statement', function(rows) {
       if (rows.length) {
-        // Now instanitate those rows with the .loadAll function, and pass control to the view.
-
+        Article.loadAll(rows);
+          // Now instanitate those rows with the .loadAll function, and pass control to the view.
+        next();
       } else {
         $.getJSON('data/hackerIpsum.json', function(rawData) {
           // Cache the json, so we don't need to request it next time:
