@@ -1,3 +1,3 @@
-page('/article', articleController.index);
+page('/', articlesController.index);
 page('/about', aboutController.index);
 page();
