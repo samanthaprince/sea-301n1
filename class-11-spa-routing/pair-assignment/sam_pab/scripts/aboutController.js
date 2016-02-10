@@ -1,8 +1,9 @@
 (function(module) {
   var aboutController = {};
-
+  console.log('outhere');
   aboutController.index = function() {
-    $('main > section').hide();
+    console.log('test');
+    $('#articles').hide();
     $('#about').show();
   };
 
